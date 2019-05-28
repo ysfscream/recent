@@ -28,7 +28,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkThemeColor,
-      body: UpcomingMovies(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            UpcomingMovies(),
+          ]
+        )
+      ),
     );
   }
 }
