@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:recent/models/data.dart';
 
 double _cardAspectRatio = 12.0 / 16.0;
 double _widgetAspectRatio = _cardAspectRatio * 1.2;
@@ -9,7 +10,11 @@ class CardScroll extends StatelessWidget {
   final double currentPage;
   final List<String> cardImages;
 
-  CardScroll({Key key, @required this.cardImages, @required this.currentPage}) : super(key: key);
+  CardScroll({
+    Key key,
+    @required this.cardImages,
+    @required this.currentPage}) : super(key: key);
+
   final double _padding = 20.0;
   final double _verticalInset = 20.0;
 
@@ -46,14 +51,66 @@ class CardScroll extends StatelessWidget {
               bottom: _padding + _verticalInset * max(-detal, 0.0),
               start: start,
               child: AspectRatio(
-                aspectRatio: _cardAspectRatio,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    Image.asset(cardImages[i], fit: BoxFit.cover),
-                  ],
+                  aspectRatio: _cardAspectRatio,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(3.0, 6.0),
+                              blurRadius: 8.0,
+                            ),
+                          ],
+                          image: DecorationImage(
+                            image: AssetImage(cardImages[i]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+                                  child: Text(
+                                    titles[i],
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 26.0,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+                                  margin: const EdgeInsets.only(bottom: 30.0, left: 30.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(20.0)
+                                  ),
+                                  child: Text(
+                                    '5月31日',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
             );
             _cardItems.add(cardItem);
           }
