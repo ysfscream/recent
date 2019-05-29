@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:recent/models/data.dart';
 
 double _cardAspectRatio = 12.0 / 16.0;
 double _widgetAspectRatio = _cardAspectRatio * 1.2;
@@ -8,11 +7,11 @@ double _widgetAspectRatio = _cardAspectRatio * 1.2;
 class CardScroll extends StatelessWidget {
 
   final double currentPage;
-  final List<String> cardImages;
+  final List<Map<String, String>> cardData;
 
   CardScroll({
     Key key,
-    @required this.cardImages,
+    @required this.cardData,
     @required this.currentPage}) : super(key: key);
 
   final double _padding = 20.0;
@@ -38,7 +37,7 @@ class CardScroll extends StatelessWidget {
           double _primaryCardLeft = _safeWidth - _widthOfPrimaryCard;
           double _horizontalInset = _primaryCardLeft / 2;
           
-          for (int i = 0; i < cardImages.length; i++) {
+          for (int i = 0; i < cardData.length; i++) {
             double detal = i - currentPage;
             bool isOnRight = detal > 0;
 
@@ -65,7 +64,7 @@ class CardScroll extends StatelessWidget {
                             ),
                           ],
                           image: DecorationImage(
-                            image: AssetImage(cardImages[i]),
+                            image: AssetImage(cardData[i]['url']),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -81,7 +80,7 @@ class CardScroll extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                                   child: Text(
-                                    titles[i],
+                                    cardData[i]['name'],
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 26.0,
@@ -106,6 +105,21 @@ class CardScroll extends StatelessWidget {
                               ],
                             ),
                           ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 145,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+                          margin: const EdgeInsets.only(bottom: 30.0, left: 30.0),
+                          child: Text(
+                            '10800 人想看',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          ),
                         ),
                       ),
                     ],
