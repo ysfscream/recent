@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
+import 'package:recent/utils/config.dart';
 
 class Api {
-  static String apiKey = '0b2bdeda43b5688921839c8ecb20399b';
+  static Config config = Config();
+  static String apiKey = config.apikey;
   static BaseOptions options = new BaseOptions(
     baseUrl: 'https://api.douban.com/v2/movie/',
     connectTimeout: 10000,

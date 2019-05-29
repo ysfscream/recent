@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recent/models/data.dart';
 import 'package:recent/wigdets/card_scroll.dart';
+// import 'package:recent/utils/api.dart';
+// import 'package:recent/models/comingModel.dart';
+import 'package:recent/wigdets/liked_dialog.dart';
 
 class UpcomingMovies extends StatefulWidget {
   UpcomingMovies({Key key}) : super(key: key);
@@ -15,13 +18,13 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
   Color darkThemeBgColor = Color(0xff2d3447);
   Color darkThemeTextColor = Colors.white;
 
-  double _currentPage = images.length - 1.0;
+  double _currentPage = data.length - 1.0;
   int _total = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: images.length - 1);
+    _pageController = PageController(initialPage: data.length - 1);
     _pageController.addListener(() {
       setState(() {
         _currentPage = _pageController.page;
@@ -36,7 +39,7 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
   //     url: '/coming_soon',
   //   );
   //   _comingModel = ComingModel.fromJSON(res);
-  //   print(_comingModel.title);
+  //   print(_comingModel.subjects);
   //   setState(() {
   //     _total = _comingModel.total;
   //   });
@@ -131,17 +134,21 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
           children: <Widget>[
             CardScroll(
               currentPage: _currentPage,
-              cardImages: images,
+              cardData: data,
             ),
             Positioned.fill(
               child: PageView.builder(
-                itemCount: images.length,
+                itemCount: data.length,
                 controller: _pageController,
                 reverse: true,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onDoubleTap: () {
-                      print(images[index]);
+                      print(data[index]);
+                      showDialog(
+                        context: context,
+                        builder: (context) => LikedDialog(),
+                      );
                     },
                   );
                 },
