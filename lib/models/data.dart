@@ -12,7 +12,7 @@ List<Map<String, String>> data = [
     'url': 'assets/image_02.jpg',
   },
   {
-    'name': '复仇者联盟',
+    'name': '复仇者联盟4',
     'url': 'assets/image_01.jpg',
   },
 ];

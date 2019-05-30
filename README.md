@@ -1,6 +1,6 @@
 # recent
 
-一个简单精美的，查看即将上映电影的 App
+一款简单查看即将上映电影的 App
 
 A new Flutter application.
 
