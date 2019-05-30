@@ -83,7 +83,15 @@ class CardScroll extends StatelessWidget {
                                     cardData[i]['name'],
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 26.0,
+                                      fontSize: 32.0,
+                                      fontWeight: FontWeight.w400,
+                                      shadows: [
+                                        Shadow(
+                                          color: Colors.black87,
+                                          offset: Offset(3.0, 3.0),
+                                          blurRadius: 4.0,
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -109,7 +117,7 @@ class CardScroll extends StatelessWidget {
                       ),
                       Positioned(
                         bottom: 0,
-                        left: 145,
+                        left: 135,
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
                           margin: const EdgeInsets.only(bottom: 30.0, left: 30.0),
@@ -118,6 +126,14 @@ class CardScroll extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  offset: Offset(3.0, 3.0),
+                                  blurRadius: 3.0,
+                                )
+                              ],
                             ),
                           ),
                         ),

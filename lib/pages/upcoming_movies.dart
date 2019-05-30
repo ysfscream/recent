@@ -4,6 +4,7 @@ import 'package:recent/wigdets/card_scroll.dart';
 // import 'package:recent/utils/api.dart';
 // import 'package:recent/models/comingModel.dart';
 import 'package:recent/wigdets/liked_dialog.dart';
+import 'package:recent/pages/liked_list.dart';
 
 class UpcomingMovies extends StatefulWidget {
   UpcomingMovies({Key key}) : super(key: key);
@@ -19,7 +20,7 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
   Color darkThemeTextColor = Colors.white;
 
   double _currentPage = data.length - 1.0;
-  int _total = 0;
+  int _total = 68;
 
   @override
   void initState() {
@@ -61,7 +62,18 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
                   color: darkThemeTextColor,
                   size: 30.0,
                 ),
-                onPressed: () => {},
+                onPressed: () {
+                  Navigator.push(context, PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 500),
+                    pageBuilder: (BuildContext context, Animation<double> animation,
+                      Animation secondaryAnimation ) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: LikedList(),
+                        );
+                    },
+                  ));
+                },
               ),
               IconButton(
                 icon: Icon(
@@ -120,7 +132,8 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
               ),
               FlatButton(
                 child: Text(
-                  _total == 0 ? '...' : '${_total.toString()}+ 部电影',
+                  // _total == 0 ? '...' : '${_total.toString()}+ 部电影',
+                  '${_total.toString()}+ 部电影',
                   style: TextStyle(
                     color: Colors.blueAccent,
                   ),
