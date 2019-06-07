@@ -5,6 +5,7 @@ import 'package:recent/wigdets/card_scroll.dart';
 // import 'package:recent/models/comingModel.dart';
 import 'package:recent/wigdets/liked_dialog.dart';
 import 'package:recent/pages/liked_list.dart';
+import 'package:recent/pages/all_movies.dart';
 
 class UpcomingMovies extends StatefulWidget {
   UpcomingMovies({Key key}) : super(key: key);
@@ -59,7 +60,7 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
               IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: darkThemeTextColor,
+                  color: Colors.white,
                   size: 30.0,
                 ),
                 onPressed: () {
@@ -138,7 +139,15 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
                     color: Colors.blueAccent,
                   ),
                 ),
-                onPressed: () => {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return AllMovies();
+                      }
+                    ),
+                  );
+                },
               ),
             ],
           ),

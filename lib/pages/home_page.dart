@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recent/pages/upcoming_movies.dart';
+import 'package:recent/pages/hot_movies.dart';
 
 class HomePage extends StatelessWidget {
   // 应用程序的根组件
@@ -32,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             UpcomingMovies(),
+            HotMovies(),
           ]
         )
       ),

@@ -83,7 +83,7 @@ class CardScroll extends StatelessWidget {
                                     cardData[i]['name'],
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 32.0,
+                                      fontSize: 30.0,
                                       fontWeight: FontWeight.w400,
                                       shadows: [
                                         Shadow(
@@ -122,7 +122,7 @@ class CardScroll extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
                           margin: const EdgeInsets.only(bottom: 30.0, left: 30.0),
                           child: Text(
-                            '10800 人想看',
+                            cardData[i]['want'] + ' 人想看',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
