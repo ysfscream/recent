@@ -38,7 +38,7 @@ class _HotMovies extends State<HotMovies> {
               Text(
                 '正在热映',
                 style: TextStyle(
-                  fontSize: 35.0,
+                  fontSize: 32.0,
                   color: Colors.white,
                   letterSpacing: 1.0,
                 ),
@@ -47,12 +47,14 @@ class _HotMovies extends State<HotMovies> {
           ),
         ),
         Container(
-          height: 320.0,
+          height: 375.0,
           child: ListView.builder(
             padding: const EdgeInsets.all(20.0),
             scrollDirection: Axis.horizontal,
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
+              List _genres = data[index]['genres'];
+
               return Padding(
                 padding: EdgeInsets.only(right: index == data.length - 1 ? 0.0 : 20.0),
                 child: Stack(
@@ -61,7 +63,7 @@ class _HotMovies extends State<HotMovies> {
                       width: 180,
                       height: 250,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(8.0),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Colors.black12,
@@ -79,16 +81,48 @@ class _HotMovies extends State<HotMovies> {
                       bottom: 0,
                       width: 180,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             data[index]['name'],
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16.0,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellowAccent,
+                                  size: 14.0,
+                                ),
+                                SizedBox(
+                                  width: 10.0,
+                                ),
+                                Text(
+                                  data[index]['rating'].toString(),
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              _genres.join(' | '),
+                              style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ],

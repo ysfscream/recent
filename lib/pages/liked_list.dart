@@ -46,7 +46,7 @@ class _LikedList extends State<LikedList> with TickerProviderStateMixin {
                 Text(
                   '通知列表',
                   style: TextStyle(
-                    fontSize: 35.0,
+                    fontSize: 32.0,
                     color: Colors.white,
                     letterSpacing: 1.0,
                   ),
