@@ -95,7 +95,7 @@ class _UpcomingMoviesState extends State<UpcomingMovies> {
               Text(
                 '即将上映',
                 style: TextStyle(
-                  fontSize: 35.0,
+                  fontSize: 32.0,
                   color: darkThemeTextColor,
                   letterSpacing: 1.0,
                 ),

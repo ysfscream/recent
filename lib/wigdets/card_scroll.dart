@@ -7,7 +7,7 @@ double _widgetAspectRatio = _cardAspectRatio * 1.2;
 class CardScroll extends StatelessWidget {
 
   final double currentPage;
-  final List<Map<String, String>> cardData;
+  final List<Map<String, dynamic>> cardData;
 
   CardScroll({
     Key key,
@@ -81,6 +81,7 @@ class CardScroll extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                                   child: Text(
                                     cardData[i]['name'],
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 30.0,
