@@ -18,9 +18,9 @@ class _AllMovies extends State<AllMovies> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
-    final double _itemHeight = (size.height - kToolbarHeight + 10) / 2;
+    final double _itemHeight = (size.height - kToolbarHeight + 20) / 2;
     final double _itemWidth = size.width / 2;
 
     return Scaffold(
@@ -41,38 +41,99 @@ class _AllMovies extends State<AllMovies> with TickerProviderStateMixin {
               ),
               itemCount: data.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: <Widget>[
-                    Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(6.0, 6.0),
-                            blurRadius: 5.0,
+                return GestureDetector(
+                  onTap: () {
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(6.0),
+                            topRight: Radius.circular(6.0)
                           ),
-                        ],
-                        image: DecorationImage(
-                          image: AssetImage(data[index]['url']),
-                          fit: BoxFit.cover
-                        )
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        data[index]['name'],
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w400,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(6.0, 6.0),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          image: DecorationImage(
+                            image: AssetImage(data[index]['url']),
+                            fit: BoxFit.fill
+                          )
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: 100,
+                        width: _itemWidth,
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(6.0),
+                            bottomRight: Radius.circular(6.0)
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                data[index]['name'],
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              data[index]['want'] + ' 人想看',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 14.0,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(width: 1.0, color: Colors.lightBlue),
+                                    ),
+                                    child: Text(
+                                      '5月31日',
+                                      style: TextStyle(
+                                        color: Colors.lightBlue,
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.favorite_border,
+                                    size: 20.0,
+                                    color: Colors.redAccent,
+                                  ),
+                                ],
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

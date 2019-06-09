@@ -99,7 +99,7 @@ class _HotMovies extends State<HotMovies> {
                               children: <Widget>[
                                 Icon(
                                   Icons.star,
-                                  color: Colors.yellowAccent,
+                                  color: Colors.yellow,
                                   size: 14.0,
                                 ),
                                 SizedBox(
