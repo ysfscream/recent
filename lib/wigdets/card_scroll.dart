@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:recent/wigdets/shadow_text.dart';
 
 double _cardAspectRatio = 12.0 / 16.0;
 double _widgetAspectRatio = _cardAspectRatio * 1.2;
@@ -79,21 +80,10 @@ class CardScroll extends StatelessWidget {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-                                  child: Text(
-                                    cardData[i]['name'],
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.w400,
-                                      shadows: [
-                                        Shadow(
-                                          color: Colors.black87,
-                                          offset: Offset(3.0, 3.0),
-                                          blurRadius: 4.0,
-                                        )
-                                      ],
-                                    ),
+                                  child: ShadowText(
+                                    text: cardData[i]['name'],
+                                    size: 30.0,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 Container(
@@ -122,21 +112,11 @@ class CardScroll extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
                           margin: const EdgeInsets.only(bottom: 30.0, left: 30.0),
-                          child: Text(
-                            cardData[i]['want'] + ' 人想看',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black,
-                                  offset: Offset(3.0, 3.0),
-                                  blurRadius: 3.0,
-                                )
-                              ],
-                            ),
-                          ),
+                          child: ShadowText(
+                            text: cardData[i]['want'] + ' 人想看',
+                            color: Colors.white,
+                            size: 16.0,
+                          )
                         ),
                       ),
                     ],

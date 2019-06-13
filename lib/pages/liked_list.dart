@@ -44,7 +44,7 @@ class _LikedList extends State<LikedList> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  '通知列表',
+                  '观影列表',
                   style: TextStyle(
                     fontSize: 32.0,
                     color: Colors.white,

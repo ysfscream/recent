@@ -22,7 +22,7 @@ class LikedDialog extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10.0),
             child: Icon(Icons.favorite, color: Colors.redAccent),
           ),
-          Text('已添加到通知列表'),
+          Text('已添加到观影列表'),
         ],
       ),
     );

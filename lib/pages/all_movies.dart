@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recent/models/data.dart';
+import 'package:recent/wigdets/shadow_text.dart';
 
 class AllMovies extends StatefulWidget {
   AllMovies({Key key}) : super(key: key);
@@ -18,10 +19,10 @@ class _AllMovies extends State<AllMovies> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // final Size size = MediaQuery.of(context).size;
 
-    final double _itemHeight = (size.height - kToolbarHeight + 20) / 2;
-    final double _itemWidth = size.width / 2;
+    // final double _itemHeight = (size.height - kToolbarHeight + 20) / 2;
+    // final double _itemWidth = size.width / 2;
 
     return Scaffold(
       backgroundColor: Color(0xff2d3447),
@@ -32,111 +33,30 @@ class _AllMovies extends State<AllMovies> with TickerProviderStateMixin {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(20.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 20.0,
-                crossAxisCount: 2,
-                childAspectRatio: (_itemWidth / _itemHeight),
+            child: SafeArea(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(10.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 10.0,
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10.0,
+                  childAspectRatio: 3 / 4,
+                ),
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  final itemID = data[index]['id'];
+                  return GridListItem(
+                    tag: itemID,
+                    name: data[index]['name'],
+                    want: data[index]['want'],
+                    image: Image.asset(
+                      data[index]['url'],
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
               ),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(6.0),
-                            topRight: Radius.circular(6.0)
-                          ),
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(6.0, 6.0),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          image: DecorationImage(
-                            image: AssetImage(data[index]['url']),
-                            fit: BoxFit.fill
-                          )
-                        ),
-                      ),
-                      Container(
-                        height: 100,
-                        width: _itemWidth,
-                        padding: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(6.0),
-                            bottomRight: Radius.circular(6.0)
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: Text(
-                                data[index]['name'],
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              data[index]['want'] + ' 人想看',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 14.0,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 1.0, color: Colors.lightBlue),
-                                    ),
-                                    child: Text(
-                                      '5月31日',
-                                      style: TextStyle(
-                                        color: Colors.lightBlue,
-                                      ),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.favorite_border,
-                                    size: 20.0,
-                                    color: Colors.redAccent,
-                                  ),
-                                ],
-                              )
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+            )
           ),
         ],
       ),
@@ -148,6 +68,78 @@ class _AllMovies extends State<AllMovies> with TickerProviderStateMixin {
             this._sortBytime = !this._sortBytime;
           });
         },
+      ),
+    );
+  }
+}
+
+class GridListItem extends StatelessWidget {
+  GridListItem({
+    Key key,
+    @required this.tag,
+    @required this.name,
+    @required this.want,
+    @required this.image,
+  }) : assert(image != null), super(key: key);
+
+  final Image image;
+  final String tag;
+  final String name;
+  final String want;
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget item = GestureDetector(
+      onTap: () {
+        print(tag);
+      },
+      child: Hero(
+        tag: tag,
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(3.0, 6.0),
+                blurRadius: 5.0,
+              ),
+            ],
+          ),
+          child: image,
+        ),
+      ),
+    );
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(6.0),
+      child: GridTile(
+        footer: GestureDetector(
+          child: GridTileBar(
+            backgroundColor:Colors.black54,
+            title: FittedBox(
+              // 缩小资源以确保整个资源都在容器内
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 5.0),
+                child: ShadowText(
+                  text: name,
+                  size: 16.0,
+                ),
+              )
+            ),
+            subtitle: ShadowText(
+              text: '$want 人想看',
+              size: 12.0,
+            ),
+            // 在 title 前面的是 leading，后面的 trailing
+            trailing: Icon(
+              Icons.star_border,
+              color: Colors.yellow,
+            ),
+          ),
+        ),
+        child: item,
       ),
     );
   }
